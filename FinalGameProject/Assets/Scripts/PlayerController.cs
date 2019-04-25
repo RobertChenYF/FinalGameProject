@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public GameObject _projectile;
     public float moveSpeed;
     private Rigidbody2D rb2d;
     [HideInInspector] public bool jump = false;
@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
 
             jump = true;
             //animator.SetBool("Jump", true);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            GameObject Bullet = Instantiate(_projectile, transform.position, Quaternion.identity);
+            Bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 20);
         }
     }
 
