@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public string HorizontalControlName;
     public string VerticalControlName;
     public string ProjectileControlName;
+    public string myName;
+    public string enemyName;
+    public Image healthBar;
+    private float health = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +53,18 @@ public class PlayerController : MonoBehaviour
             jump = true;
             //animator.SetBool("Jump", true);
         }
-        if (Input.GetAxis(ProjectileControlName) > 0)
+
+        if (Input.GetButtonDown(ProjectileControlName))
+
+       
         {
-            GameObject Bullet = Instantiate(_projectile, transform.position, Quaternion.identity);
-            Bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 20);
+            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+
+            GameObject Bullet = Instantiate(_projectile, spawnPosition, Quaternion.identity);
+            Bullet.GetComponent<ProjectileScript>().myName = myName;
+            Bullet.GetComponent<ProjectileScript>().enemyName = enemyName;
+            Bullet.GetComponent<ProjectileScript>().playerController = this;
+            //Bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 20);
         }
     }
 
@@ -65,5 +78,16 @@ public class PlayerController : MonoBehaviour
             rb2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
         }
+    }
+
+    public void DamagebyProjectile(string damagedPlayer)
+    {
+        if(damagedPlayer == myName)
+        {
+            Debug.Log(myName + " get damaged");
+            health -= 0.2f;
+            healthBar.fillAmount = health;
+        }
+
     }
 }

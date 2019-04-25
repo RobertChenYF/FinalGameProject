@@ -4,21 +4,40 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
-    public GameObject _projectile;
+
+    public string enemyName;
+    public string myName;
+    public string floor;
+    public PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(gameObject, 10);
+        GameObject enemy = GameObject.Find(enemyName);
+        playerController= (PlayerController)enemy.GetComponent(typeof(PlayerController));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Fire1") > 0)
+        
+    
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.name == floor)
         {
-            GameObject Bullet = Instantiate(_projectile,transform.position,Quaternion.identity);
-            Bullet.GetComponent<Rigidbody2D>().AddForce(transform.forward * 5);
+            Destroy(gameObject);
         }
+        else if (col.gameObject.name == enemyName)
+        {
+            Destroy(gameObject);
+            Debug.Log("hit enemy");
+            playerController.DamagebyProjectile(enemyName);
+        }
+
+
+        
     }
 }
