@@ -484,6 +484,7 @@ MonoBehaviour:
   jumpForce: 200
   HorizontalControlName: Horizontal_1
   VerticalControlName: Vertical_1
+  ProjectileControlName: 
 --- !u!50 &1844080008
 Rigidbody2D:
   serializedVersion: 4
@@ -741,6 +742,7 @@ MonoBehaviour:
   jumpForce: 200
   HorizontalControlName: Horizontal_2
   VerticalControlName: Vertical_2
+  ProjectileControlName: Fire1
 --- !u!1 &1883168110
 GameObject:
   m_ObjectHideFlags: 0

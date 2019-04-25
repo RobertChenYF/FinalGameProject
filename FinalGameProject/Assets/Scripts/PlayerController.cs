@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 1000f;
     public string HorizontalControlName;
     public string VerticalControlName;
+    public string ProjectileControlName;
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
             jump = true;
             //animator.SetBool("Jump", true);
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetAxis(ProjectileControlName) > 0)
         {
             GameObject Bullet = Instantiate(_projectile, transform.position, Quaternion.identity);
             Bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 20);

@@ -15,7 +15,7 @@ public class ProjectileScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetAxis("Fire1") > 0)
         {
             GameObject Bullet = Instantiate(_projectile,transform.position,Quaternion.identity);
             Bullet.GetComponent<Rigidbody2D>().AddForce(transform.forward * 5);
