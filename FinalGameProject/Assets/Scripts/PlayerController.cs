@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public string enemyName;
     public Image healthBar;
     private float health = 1;
+    public float flyTimer;
+    private float tempFlyTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        tempFlyTimer = tempFlyTimer - Time.deltaTime;
+
         if (Input.GetAxis(HorizontalControlName) > 0 )
         {
 
@@ -45,13 +50,12 @@ public class PlayerController : MonoBehaviour
             //animator.SetInteger("State", 0);
         }
 
-        if (Input.GetButtonDown(VerticalControlName))
+        if (Input.GetButtonDown(VerticalControlName) && tempFlyTimer <= 0)
         {
-
-           
-
+            
             jump = true;
             //animator.SetBool("Jump", true);
+            tempFlyTimer = flyTimer;
         }
 
         if (Input.GetButtonDown(ProjectileControlName))
@@ -75,7 +79,9 @@ public class PlayerController : MonoBehaviour
         if (jump)
         {
             rb2d.velocity = Vector2.zero;
-            rb2d.AddForce(new Vector2(0f, jumpForce));
+            float tempJumpForce = (health * jumpForce) / 2 + jumpForce / 2;
+
+            rb2d.AddForce(new Vector2(0f, tempJumpForce));
             jump = false;
         }
     }
@@ -89,5 +95,12 @@ public class PlayerController : MonoBehaviour
             healthBar.fillAmount = health;
         }
 
+    }
+
+    public void Dead()
+    {
+        Debug.Log(enemyName + " win!");
+
+        Destroy(gameObject);
     }
 }

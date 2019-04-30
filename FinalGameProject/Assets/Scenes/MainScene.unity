@@ -666,13 +666,14 @@ MonoBehaviour:
     type: 3}
   moveSpeed: 4
   jump: 0
-  jumpForce: 200
+  jumpForce: 300
   HorizontalControlName: Horizontal_1
   VerticalControlName: Vertical_1
   ProjectileControlName: Fire_1
   myName: Player 2
   enemyName: Player 1
   healthBar: {fileID: 292211427}
+  flyTimer: 1
 --- !u!50 &1844080008
 Rigidbody2D:
   serializedVersion: 4
@@ -927,13 +928,14 @@ MonoBehaviour:
     type: 3}
   moveSpeed: 4
   jump: 0
-  jumpForce: 200
+  jumpForce: 300
   HorizontalControlName: Horizontal_2
   VerticalControlName: Vertical_2
   ProjectileControlName: Fire_2
   myName: Player 1
   enemyName: Player 2
   healthBar: {fileID: 20222427}
+  flyTimer: 1
 --- !u!1 &1883168110
 GameObject:
   m_ObjectHideFlags: 0
