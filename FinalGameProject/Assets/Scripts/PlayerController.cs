@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     private float health = 1;
     public float flyTimer;
     private float tempFlyTimer;
+    public float shootTimer;
+    private float tempShootTimer;
+    public Animator pigeon;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +35,8 @@ public class PlayerController : MonoBehaviour
     {
 
         tempFlyTimer = tempFlyTimer - Time.deltaTime;
-
+        tempShootTimer = tempShootTimer - Time.deltaTime;
+        //pigeon.SetBool("ifFly", false);
         if (Input.GetAxis(HorizontalControlName) > 0 )
         {
 
@@ -58,7 +63,7 @@ public class PlayerController : MonoBehaviour
             tempFlyTimer = flyTimer;
         }
 
-        if (Input.GetButtonDown(ProjectileControlName))
+        if (Input.GetButtonDown(ProjectileControlName) && tempShootTimer <= 0)
 
        
         {
@@ -69,6 +74,7 @@ public class PlayerController : MonoBehaviour
             Bullet.GetComponent<ProjectileScript>().enemyName = enemyName;
             Bullet.GetComponent<ProjectileScript>().playerController = this;
             //Bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 20);
+            tempShootTimer = shootTimer;
         }
     }
 
@@ -79,11 +85,14 @@ public class PlayerController : MonoBehaviour
         if (jump)
         {
             rb2d.velocity = Vector2.zero;
-            float tempJumpForce = (health * jumpForce) / 2 + jumpForce / 2;
+            float tempJumpForce = (health * jumpForce) * 0.25f + jumpForce * 0.75f; // damaged fly equation
 
             rb2d.AddForce(new Vector2(0f, tempJumpForce));
             jump = false;
+            pigeon.SetBool("ifFly", true);
         }
+
+
     }
 
     public void DamagebyProjectile(string damagedPlayer)
@@ -102,5 +111,20 @@ public class PlayerController : MonoBehaviour
         Debug.Log(enemyName + " win!");
 
         Destroy(gameObject);
+    }
+
+   // public void FaceEachOther()
+   // {
+     //   transform.lossyScale = 
+
+   // }
+
+    //public bool StartingSide()
+    //{
+      //
+    //}
+    public void flyAnimationEnd()
+    {
+        pigeon.SetBool("ifFly", false);
     }
 }
