@@ -22,18 +22,20 @@ public class PlayerController : MonoBehaviour
     public float shootTimer;
     private float tempShootTimer;
     public Animator pigeon;
+    private GameObject enemyPlayer;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        enemyPlayer = GameObject.Find(enemyName);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        FaceEachOther();
         tempFlyTimer = tempFlyTimer - Time.deltaTime;
         tempShootTimer = tempShootTimer - Time.deltaTime;
         //pigeon.SetBool("ifFly", false);
@@ -55,15 +57,17 @@ public class PlayerController : MonoBehaviour
             //animator.SetInteger("State", 0);
         }
 
-        if (Input.GetButtonDown(VerticalControlName) && tempFlyTimer <= 0)
+        if (Input.GetButtonDown(VerticalControlName) && pigeon.GetBool("ifFly") == false)
         {
-            
-            jump = true;
+
+            pigeon.SetBool("ifFly", true);
+
+            //jump = true;
             //animator.SetBool("Jump", true);
-            tempFlyTimer = flyTimer;
+            //tempFlyTimer = flyTimer;
         }
 
-        if (Input.GetButtonDown(ProjectileControlName) && tempShootTimer <= 0)
+        if (Input.GetButtonDown(ProjectileControlName) && tempShootTimer <= 0 && pigeon.GetBool("ifFly") == false)
 
        
         {
@@ -82,15 +86,15 @@ public class PlayerController : MonoBehaviour
     {
 
 
-        if (jump)
-        {
-            rb2d.velocity = Vector2.zero;
-            float tempJumpForce = (health * jumpForce) * 0.25f + jumpForce * 0.75f; // damaged fly equation
-
-            rb2d.AddForce(new Vector2(0f, tempJumpForce));
-            jump = false;
-            pigeon.SetBool("ifFly", true);
-        }
+       // if (jump)
+        //{
+        //    rb2d.velocity = Vector2.zero;
+        //    float tempJumpForce = (health * jumpForce) * 0.25f + jumpForce * 0.75f; // damaged fly equation
+        //
+        //    rb2d.AddForce(new Vector2(0f, tempJumpForce));
+         //   jump = false;
+        //    pigeon.SetBool("ifFly", true);
+       // }
 
 
     }
@@ -113,18 +117,42 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
     }
 
-   // public void FaceEachOther()
-   // {
-     //   transform.lossyScale = 
+    public void FaceEachOther()
+    {
+        if(transform.position.x < enemyPlayer.transform.position.x)
+        {
 
-   // }
+            transform.rotation = Quaternion.Euler(0,0,0);
+            transform.localScale = new Vector3(0.2f, 0.2f, 1 );
 
-    //public bool StartingSide()
-    //{
-      //
-    //}
-    public void flyAnimationEnd()
+
+        }
+        else if (transform.position.x > enemyPlayer.transform.position.x)
+        {
+
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+            transform.localScale = new Vector3(0.2f, -0.2f, 1);
+        }
+
+
+    }
+
+    
+    public void FlyAnimationEnd()
     {
         pigeon.SetBool("ifFly", false);
+        
     }
+
+    public void Fly()
+    {
+        rb2d.velocity = Vector2.zero;
+        float tempJumpForce = (health * jumpForce) * 0.25f + jumpForce * 0.75f; // damaged fly equation
+
+        rb2d.AddForce(new Vector2(0f, tempJumpForce));
+        jump = false;
+        pigeon.SetBool("ifFly", true);
+    }
+
+    
 }
