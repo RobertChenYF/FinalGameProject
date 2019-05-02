@@ -458,6 +458,63 @@ RectTransform:
   m_AnchoredPosition: {x: -330, y: -102}
   m_SizeDelta: {x: 100, y: 106}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &808017806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 808017808}
+  - component: {fileID: 808017807}
+  m_Layer: 0
+  m_Name: Side Wall (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &808017807
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808017806}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -7.173194}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 15.346388}
+  m_EdgeRadius: 0
+--- !u!4 &808017808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808017806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.99, y: 6.89, z: -0.07992516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &943387452
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 382, y: -109}
+  m_AnchoredPosition: {x: 388.2, y: -96.2}
   m_SizeDelta: {x: 100, y: 106}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1195102909
@@ -709,6 +766,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704949779}
   m_CullTransparentMesh: 0
+--- !u!1 &1717330562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1717330564}
+  - component: {fileID: 1717330563}
+  m_Layer: 0
+  m_Name: Side Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1717330563
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717330562}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -7.173194}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 15.346388}
+  m_EdgeRadius: 0
+--- !u!4 &1717330564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717330562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.93, y: 6.89, z: -0.07992516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1844080006
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,9 +861,10 @@ MonoBehaviour:
   moveSpeed: 4
   jump: 0
   jumpForce: 300
-  HorizontalControlName: Horizontal_1
-  VerticalControlName: Vertical_1
-  ProjectileControlName: Fire_1
+  HorizontalControlName: Horizontal_2
+  VerticalControlName: Vertical_2
+  VerticalProjectileControlName: Vertical_Fire_2
+  HorizontalProjectileControlName: Horizontal_Fire_2
   myName: Player 2
   enemyName: Player 1
   healthBar: {fileID: 292211427}
@@ -859,7 +974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844080006}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 5.38, y: -1.95, z: 0}
+  m_LocalPosition: {x: -6.88, y: 1.45, z: 0}
   m_LocalScale: {x: 0.2, y: -0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -987,7 +1102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867159379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.04, y: 1.83, z: 0}
+  m_LocalPosition: {x: 5.52, y: 0.89, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1028,12 +1143,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectile: {fileID: 5015946956323679108, guid: b439117dfd36e3947882ea1184b6a46b,
     type: 3}
-  moveSpeed: 4
+  moveSpeed: 8
   jump: 0
   jumpForce: 300
-  HorizontalControlName: Horizontal_2
-  VerticalControlName: Vertical_2
-  ProjectileControlName: Fire_2
+  HorizontalControlName: Horizontal_1
+  VerticalControlName: Vertical_1
+  VerticalProjectileControlName: Vertical_Fire_1
+  HorizontalProjectileControlName: Horizontal_Fire_1
   myName: Player 1
   enemyName: Player 2
   healthBar: {fileID: 20222427}
