@@ -67,10 +67,10 @@ public class PlayerController : MonoBehaviour
         rb2d.velocity = new Vector2((rb2d.velocity.x+ moveSpeed*Input.GetAxis(HorizontalControlName)*Time.deltaTime), rb2d.velocity.y);
         //Debug.Log(Input.GetAxis(HorizontalControlName));
 
-        if (Input.GetButtonDown(VerticalControlName) && pigeon.GetBool("ifFly") == false)
+        if (Input.GetButtonDown(VerticalControlName))
         {
 
-            pigeon.SetBool("ifFly", true);
+            pigeon.SetTrigger("Fly");
 
             //jump = true;
             //animator.SetBool("Jump", true);
@@ -83,9 +83,9 @@ public class PlayerController : MonoBehaviour
             BottomProjectile();
            
         }
-        else if (Input.GetButtonDown(HorizontalProjectileControlName) && tempShootTimer <= 0)
+        else if (Input.GetButtonDown(HorizontalProjectileControlName) )
         {
-            FrontProjectile(ifLeft);
+            pigeon.SetTrigger("Spit");
         }
         //Debug.Log(Input.GetAxis(HorizontalControlName));
 
@@ -147,9 +147,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void FlyAnimationEnd()
+    public void AnimationEnd()
     {
-        pigeon.SetBool("ifFly", false);
+        pigeon.SetTrigger("Idle");
         
     }
 
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
 
         rb2d.AddForce(new Vector2(0f, tempJumpForce));
         jump = false;
-        pigeon.SetBool("ifFly", true);
+        //pigeon.SetBool("ifFly", true);
     }
 
     public void BottomProjectile()
@@ -211,5 +211,10 @@ public class PlayerController : MonoBehaviour
             
         //Bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 20);
         tempShootTimer = shootTimer;
+    }
+
+    public void Spit()
+    {
+        FrontProjectile(ifLeft);
     }
 }

@@ -9,6 +9,7 @@ public class ProjectileScript : MonoBehaviour
     public string myName;
     public string floor;
     public PlayerController playerController;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,9 @@ public class ProjectileScript : MonoBehaviour
     {
         if(col.gameObject.name == floor)
         {
-            Destroy(gameObject);
+
+            animator.SetTrigger("Hit");
+            //Destroy(gameObject);
         }
         else if (col.gameObject.name == enemyName)
         {
@@ -36,8 +39,10 @@ public class ProjectileScript : MonoBehaviour
             Debug.Log("hit enemy");
             playerController.DamagebyProjectile(enemyName);
         }
-
-
-        
+}
+    public void DestroyItSelf()
+    {
+        Destroy(gameObject);
     }
+
 }
