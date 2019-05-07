@@ -368,7 +368,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.833088
+  orthographic size: 9.24681
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -548,9 +548,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 388.2, y: -96.2}
+  m_AnchoredPosition: {x: 386, y: -96}
   m_SizeDelta: {x: 100, y: 106}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.50000036}
 --- !u!1 &1195102909
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717330562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.93, y: 6.89, z: -0.07992516}
+  m_LocalPosition: {x: 15.84, y: 6.79, z: -0.07992516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -807,7 +807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816411911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.06, y: 7.61, z: -0.07992516}
+  m_LocalPosition: {x: -16.07, y: 7.51, z: -0.07992516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -886,8 +886,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838562131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.04, y: 40.71, z: 0}
-  m_LocalScale: {x: 1.2654, y: 1.0505999, z: 1}
+  m_LocalPosition: {x: -0.088, y: 36.669, z: 0}
+  m_LocalScale: {x: 1.9414034, y: 1.1308405, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -925,11 +925,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad38309f23714ee44b7dd683a6f53f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 5015946956323679108, guid: b439117dfd36e3947882ea1184b6a46b,
+  VerticalProjectile: {fileID: 5015946956323679108, guid: 4ad200ff09ff66a4299a92aa5c8f0e2d,
+    type: 3}
+  HorizontalProjectile: {fileID: 5015946956323679108, guid: b439117dfd36e3947882ea1184b6a46b,
     type: 3}
   moveSpeed: 4
   jump: 0
-  jumpForce: 300
+  jumpForce: 400
   HorizontalControlName: Horizontal_2
   VerticalControlName: Vertical_2
   VerticalProjectileControlName: Vertical_Fire_2
@@ -976,10 +978,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.46736574, y: 1.2000408}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 1.91}
-    pivot: {x: 0.47660717, y: 0.42226097}
+    border: {x: 0, y: 0, z: 0, w: 0.89}
+    pivot: {x: 0.47667834, y: 0.5177687}
     oldSize: {x: 20.48, y: 15.36}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 20.48, y: 15.36}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1024,12 +1026,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eebc2be2faee5418a996aae4478c4cfd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23556680b9a504ef4b68b4a281ed0b93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20.48, y: 15.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1210,11 +1212,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad38309f23714ee44b7dd683a6f53f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 5015946956323679108, guid: b439117dfd36e3947882ea1184b6a46b,
+  VerticalProjectile: {fileID: 5015946956323679108, guid: 4ad200ff09ff66a4299a92aa5c8f0e2d,
     type: 3}
-  moveSpeed: 8
+  HorizontalProjectile: {fileID: 5015946956323679108, guid: b439117dfd36e3947882ea1184b6a46b,
+    type: 3}
+  moveSpeed: 4
   jump: 0
-  jumpForce: 300
+  jumpForce: 400
   HorizontalControlName: Horizontal_1
   VerticalControlName: Vertical_1
   VerticalProjectileControlName: Vertical_Fire_1

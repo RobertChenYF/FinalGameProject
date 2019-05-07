@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject _projectile;
+    public GameObject VerticalProjectile;
+    public GameObject HorizontalProjectile;
     public float moveSpeed;
     private Rigidbody2D rb2d;
     [HideInInspector] public bool jump = false;
@@ -77,10 +78,11 @@ public class PlayerController : MonoBehaviour
             //tempFlyTimer = flyTimer;
         }
 
-        if (Input.GetButtonDown(VerticalProjectileControlName) && tempShootTimer <= 0 )
+        if (Input.GetButtonDown(VerticalProjectileControlName)  )
 
         {
-            BottomProjectile();
+            //BottomProjectile();
+            pigeon.SetTrigger("Poop");
            
         }
         else if (Input.GetButtonDown(HorizontalProjectileControlName) )
@@ -89,6 +91,12 @@ public class PlayerController : MonoBehaviour
         }
         //Debug.Log(Input.GetAxis(HorizontalControlName));
 
+        if (transform.position.y < enemyPlayer.transform.position.y - 5)
+        {
+            health = health - 0.001f;
+            Debug.Log("out of bound");
+        }
+        healthBar.fillAmount = health;
     }
 
     void FixedUpdate()
@@ -113,7 +121,7 @@ public class PlayerController : MonoBehaviour
         if(damagedPlayer == myName)
         {
             Debug.Log(myName + " get damaged");
-            health -= 0.2f;
+            health -= 0.05f;
             healthBar.fillAmount = health;
         }
 
@@ -156,7 +164,7 @@ public class PlayerController : MonoBehaviour
     public void Fly()
     {
         rb2d.velocity = Vector2.zero;
-        float tempJumpForce = (health * jumpForce) * 0.25f + jumpForce * 0.75f; // damaged fly equation
+        float tempJumpForce = ((1-health) * jumpForce) * 0.4f + jumpForce * 0.6f; // damaged fly equation
 
         rb2d.AddForce(new Vector2(0f, tempJumpForce));
         jump = false;
@@ -167,12 +175,17 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
 
-        GameObject Bullet = Instantiate(_projectile, spawnPosition, Quaternion.identity);
+        GameObject Bullet = Instantiate(VerticalProjectile, spawnPosition, Quaternion.identity);
         Bullet.GetComponent<ProjectileScript>().myName = myName;
         Bullet.GetComponent<ProjectileScript>().enemyName = enemyName;
         Bullet.GetComponent<ProjectileScript>().playerController = this;
+        Rigidbody2D rigidbody2D;
+
+        rigidbody2D = Bullet.GetComponent<Rigidbody2D>();
+        //rigidbody2D.velocity = Vector2.zero;
+        rigidbody2D.AddForce(new Vector3(0, - 2, 0), ForceMode2D.Impulse);
         //Bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 20);
-        tempShootTimer = shootTimer;
+        //tempShootTimer = shootTimer;
     }
 
     public void FrontProjectile(bool ifLeft)
@@ -181,7 +194,7 @@ public class PlayerController : MonoBehaviour
         if (ifLeft == true) {
             Vector3 spawnPosition = new Vector3(transform.position.x + 1, transform.position.y + 0.5f, transform.position.z);
 
-            GameObject Bullet = Instantiate(_projectile, spawnPosition, Quaternion.identity);
+            GameObject Bullet = Instantiate(HorizontalProjectile, spawnPosition, Quaternion.identity);
             Bullet.GetComponent<ProjectileScript>().myName = myName;
             Bullet.GetComponent<ProjectileScript>().enemyName = enemyName;
             Bullet.GetComponent<ProjectileScript>().playerController = this;
@@ -195,7 +208,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 spawnPosition = new Vector3(transform.position.x - 1, transform.position.y + 0.5f, transform.position.z);
 
-            GameObject Bullet = Instantiate(_projectile, spawnPosition, Quaternion.identity);
+            GameObject Bullet = Instantiate(HorizontalProjectile, spawnPosition, Quaternion.identity);
             Bullet.GetComponent<ProjectileScript>().myName = myName;
             Bullet.GetComponent<ProjectileScript>().enemyName = enemyName;
             Bullet.GetComponent<ProjectileScript>().playerController = this;
@@ -205,12 +218,9 @@ public class PlayerController : MonoBehaviour
             rigidbody2D.velocity = Vector2.zero;
             rigidbody2D.AddForce(new Vector3(-7, 3, 0), ForceMode2D.Impulse);
         }
-
-
-
-            
+ 
         //Bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 20);
-        tempShootTimer = shootTimer;
+       // tempShootTimer = shootTimer;
     }
 
     public void Spit()

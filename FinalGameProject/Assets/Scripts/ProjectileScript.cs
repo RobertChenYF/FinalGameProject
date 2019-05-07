@@ -35,8 +35,9 @@ public class ProjectileScript : MonoBehaviour
         }
         else if (col.gameObject.name == enemyName)
         {
-            Destroy(gameObject);
+            
             Debug.Log("hit enemy");
+            animator.SetTrigger("Hit");
             playerController.DamagebyProjectile(enemyName);
         }
 }

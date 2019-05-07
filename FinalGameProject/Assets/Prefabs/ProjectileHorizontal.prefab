@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8025540043327836174}
   - component: {fileID: 7321185621730922872}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: ProjectileHorizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5015946956323679108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.0903993, y: 1.3063858, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -117,10 +117,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.9485452, y: 1.5844638}
+  m_Offset: {x: 0.94854546, y: -0.47282684}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.539818, y: 0.55309063}
     oldSize: {x: 40, y: 40}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -128,7 +128,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 13.192963, y: 6.8811345}
+  m_Size: {x: 13.192963, y: 7.978359}
   m_EdgeRadius: 0
 --- !u!114 &8025540043327836174
 MonoBehaviour:
@@ -157,7 +157,7 @@ Animator:
   m_GameObject: {fileID: 5015946956323679108}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 721edf8729955364e8e530df172e3512, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8baffdb42919d0c458716fca7b1d254f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
