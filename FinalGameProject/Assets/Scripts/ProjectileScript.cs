@@ -10,7 +10,7 @@ public class ProjectileScript : MonoBehaviour
     public string floor;
     public PlayerController playerController;
     public Animator animator;
-
+    public float damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +38,7 @@ public class ProjectileScript : MonoBehaviour
             
             Debug.Log("hit enemy");
             animator.SetTrigger("Hit");
-            playerController.DamagebyProjectile(enemyName);
+            playerController.DamagebyProjectile(enemyName, damage);
         }
 }
     public void DestroyItSelf()

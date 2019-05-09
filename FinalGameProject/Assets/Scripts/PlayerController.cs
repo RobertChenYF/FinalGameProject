@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public string myName;
     public string enemyName;
     public Image healthBar;
-    private float health = 1;
+    public  float health = 1;
     public float flyTimer;
     private float tempFlyTimer;
     public float shootTimer;
@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     public Animator pigeon;
     private GameObject enemyPlayer;
     private bool ifLeft;
+    public bool ifDead = false;
+    public Text winningText;
+    public Animator healthBarBackground;
+   // public GameObject floor;
 
 
 
@@ -94,11 +98,13 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < enemyPlayer.transform.position.y - 10)
         {
             health = health - 0.0004f;
+            healthBarBackground.SetTrigger("Damage");
             Debug.Log("out of bound");
         }
         if(health <= 0)
         {
             health = 0;
+            healthBarBackground.SetTrigger("Critical");
         }
         healthBar.fillAmount = health;
     }
@@ -120,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void DamagebyProjectile(string damagedPlayer)
+    public void DamagebyProjectile(string damagedPlayer, float damage)
     {
         
         if (damagedPlayer == myName)
@@ -131,8 +137,8 @@ public class PlayerController : MonoBehaviour
             }
 
             Debug.Log(myName + " get damaged");
-            health -= 0.1f;
-            healthBar.fillAmount = health;
+            health -= damage;
+            healthBarBackground.SetTrigger("Damage");
         }
 
     }
@@ -144,6 +150,8 @@ public class PlayerController : MonoBehaviour
         pigeon.SetTrigger("Dead");
         CameraManager.IfPigeonDead = true;
         CameraManager.deadPigeon = gameObject;
+        healthBarBackground.SetTrigger("Dead");
+        ifDead = true;
     }
 
     public void FaceEachOther()
@@ -239,4 +247,18 @@ public class PlayerController : MonoBehaviour
     {
         FrontProjectile(ifLeft);
     }
-}
+
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+
+        if (col.gameObject.name == "Floor" && ifDead == true)
+        {
+            
+            GameManager.IfHitFloor = true;
+            winningText.text = (enemyName + " win!");
+            Debug.Log("Hit follo");
+        }
+    }
+
+ }

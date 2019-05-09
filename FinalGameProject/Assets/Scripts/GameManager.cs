@@ -3,6 +3,7 @@ using System.Collections;
 
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject EndScreenUI;
     public Button Return;
     public Button Start;
+    public static bool IfHitFloor;
+    public Button Return2;
     //Awake is always called before any Start functions
     void Awake()
     {
@@ -51,9 +54,9 @@ public class GameManager : MonoBehaviour
     //Update is called every frame.
     void Update()
     {
-        
 
 
+        EndScreen(IfHitFloor);
     }
 
     public void StartGame()
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
         player2.SetActive(false);
         instruction.SetActive(true);
         Return.Select();
+        EndScreenUI.SetActive(false);
     }
     public void StartScreen()
     {
@@ -88,15 +92,39 @@ public class GameManager : MonoBehaviour
         instruction.SetActive(false);
         Start.Select();
 
+        EndScreenUI.SetActive(false);
     }
-    public void EndScreen()
+    public void EndScreen(bool IfHitFloor)
     {
+
+        if(IfHitFloor == true)
+        {
         CameraManager.IfBattle = true;
         startScreen.SetActive(false);
         battleUI.SetActive(true);
         player1.SetActive(true);
         player2.SetActive(true);
         instruction.SetActive(false);
+       EndScreenUI.SetActive(true);
+            Return2.Select();
 
+        }
+        
     }
+
+    public void ReloadScene()
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        player1.transform.position = new Vector3(-7.7f, 17.4f, 0);
+        player2.transform.position = new Vector3(8.3f, 17.4f, 0);
+        player1.GetComponent<PlayerController>().health = 1;
+        player2.GetComponent<PlayerController>().health = 1;
+        player1.GetComponent<PlayerController>().ifDead = false;
+        player2.GetComponent<PlayerController>().ifDead = false;
+        IfHitFloor = false;
+
+        StartScreen();
+    }
+
 }

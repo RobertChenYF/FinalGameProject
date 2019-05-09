@@ -147,6 +147,7 @@ MonoBehaviour:
   floor: Floor
   playerController: {fileID: 0}
   animator: {fileID: 7321185621730922872}
+  damage: 0.08
 --- !u!95 &7321185621730922872
 Animator:
   serializedVersion: 3

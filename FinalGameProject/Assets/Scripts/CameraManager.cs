@@ -40,7 +40,15 @@ public class CameraManager : MonoBehaviour
             if (IfPigeonDead)
         {
             FollowDeadPigeon(deadPigeon);
-        }
+                if (transform.position.y < -8)
+                {
+                    transform.position = new Vector3(transform.position.x, -8, transform.position.z);
+                }
+                if (transform.position.y > 122)
+                {
+                    transform.position = new Vector3(transform.position.x, 122, transform.position.z);
+                }
+            }
             else
             {
             FollowHigherPigeon();
@@ -62,10 +70,10 @@ public class CameraManager : MonoBehaviour
 
     public void FollowDeadPigeon(GameObject DeadPigeon)
     {
-        animator.SetTrigger("Focus");
+       // animator.SetTrigger("Focus");
        
        
-            transform.position = new Vector3(DeadPigeon.transform.position.x, DeadPigeon.transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, DeadPigeon.transform.position.y, transform.position.z);
         
     }
 
