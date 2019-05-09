@@ -91,10 +91,14 @@ public class PlayerController : MonoBehaviour
         }
         //Debug.Log(Input.GetAxis(HorizontalControlName));
 
-        if (transform.position.y < enemyPlayer.transform.position.y - 5)
+        if (transform.position.y < enemyPlayer.transform.position.y - 10)
         {
-            health = health - 0.001f;
+            health = health - 0.0004f;
             Debug.Log("out of bound");
+        }
+        if(health <= 0)
+        {
+            health = 0;
         }
         healthBar.fillAmount = health;
     }
@@ -118,10 +122,16 @@ public class PlayerController : MonoBehaviour
 
     public void DamagebyProjectile(string damagedPlayer)
     {
-        if(damagedPlayer == myName)
+        
+        if (damagedPlayer == myName)
         {
+            if (health <= 0)
+            {
+                Dead();
+            }
+
             Debug.Log(myName + " get damaged");
-            health -= 0.05f;
+            health -= 0.1f;
             healthBar.fillAmount = health;
         }
 
@@ -131,7 +141,9 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log(enemyName + " win!");
 
-        Destroy(gameObject);
+        pigeon.SetTrigger("Dead");
+        CameraManager.IfPigeonDead = true;
+        CameraManager.deadPigeon = gameObject;
     }
 
     public void FaceEachOther()
@@ -183,7 +195,7 @@ public class PlayerController : MonoBehaviour
 
         rigidbody2D = Bullet.GetComponent<Rigidbody2D>();
         //rigidbody2D.velocity = Vector2.zero;
-        rigidbody2D.AddForce(new Vector3(0, - 2, 0), ForceMode2D.Impulse);
+        rigidbody2D.AddForce(new Vector3(0, - 4, 0), ForceMode2D.Impulse);
         //Bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 20);
         //tempShootTimer = shootTimer;
     }

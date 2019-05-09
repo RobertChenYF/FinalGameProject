@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using System.Collections.Generic;       //Allows us to use Lists. 
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
-
-
+    public static int sceneState = 0; //start Screen
+    public GameObject startScreen;
+    public GameObject battleUI;
+    public GameObject player1;
+    public GameObject player2;
+    public GameObject instruction;
+    public Button Return;
+    public Button Start;
     //Awake is always called before any Start functions
     void Awake()
     {
@@ -31,19 +38,53 @@ public class GameManager : MonoBehaviour
 
 
         //Call the InitGame function to initialize the first level 
-
+        StartScreen();
     }
 
     //Initializes the game for each level.
 
-
+    
 
 
 
     //Update is called every frame.
     void Update()
     {
+        
+
 
     }
 
+    public void StartGame()
+    {
+        CameraManager.IfBattle = true;
+        startScreen.SetActive(false);
+        battleUI.SetActive(true);
+        player1.SetActive(true);
+        player2.SetActive(true);
+        instruction.SetActive(false);
+
+    }
+
+    public void Instruction()
+    {
+        CameraManager.IfBattle = false;
+        startScreen.SetActive(false);
+        battleUI.SetActive(false);
+        player1.SetActive(false);
+        player2.SetActive(false);
+        instruction.SetActive(true);
+        Return.Select();
+    }
+    public void StartScreen()
+    {
+       
+        CameraManager.IfBattle = false;
+        startScreen.SetActive(true);
+        battleUI.SetActive(false);
+        player1.SetActive(false);
+        player2.SetActive(false);
+        instruction.SetActive(false);
+        Start.Select();
+    }
 }
