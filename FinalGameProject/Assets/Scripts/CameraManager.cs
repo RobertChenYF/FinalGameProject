@@ -10,6 +10,7 @@ public class CameraManager : MonoBehaviour
     static public bool IfPigeonDead = false;
     static public bool IfBattle = false;
     static public GameObject deadPigeon;
+    public Animator animator;
     int a = 1;
     void Start()
     {
@@ -43,31 +44,29 @@ public class CameraManager : MonoBehaviour
             else
             {
             FollowHigherPigeon();
+                if (transform.position.y < -8)
+                {
+                    transform.position = new Vector3(transform.position.x, -8, transform.position.z);
+                }
+                if (transform.position.y > 122)
+                {
+                    transform.position = new Vector3(transform.position.x, 122, transform.position.z);
+                }
             }
         }
 
-        if (transform.position.y < -8)
-        {
-            transform.position = new Vector3(transform.position.x, -8, transform.position.z);
-        }
-        else if (transform.position.y > 122)
-        {
-            transform.position = new Vector3(transform.position.x, 122, transform.position.z);
-        }
+        
     }
 
     
 
     public void FollowDeadPigeon(GameObject DeadPigeon)
     {
-        if (Mathf.Max(player1.transform.position.y, player2.transform.position.y) < -8)
-        {
-            transform.position = new Vector3(transform.position.x, -8, transform.position.z);
-        }
-        else
-        {
-            transform.position = new Vector3(transform.position.x, DeadPigeon.transform.position.y, transform.position.z);
-        }
+        animator.SetTrigger("Focus");
+       
+       
+            transform.position = new Vector3(DeadPigeon.transform.position.x, DeadPigeon.transform.position.y, transform.position.z);
+        
     }
 
     public void FollowHigherPigeon()

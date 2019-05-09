@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     public GameObject instruction;
+    public GameObject EndScreenUI;
     public Button Return;
     public Button Start;
     //Awake is always called before any Start functions
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
         player1.SetActive(true);
         player2.SetActive(true);
         instruction.SetActive(false);
-
+        EndScreenUI.SetActive(false);
     }
 
     public void Instruction()
@@ -86,5 +87,16 @@ public class GameManager : MonoBehaviour
         player2.SetActive(false);
         instruction.SetActive(false);
         Start.Select();
+
+    }
+    public void EndScreen()
+    {
+        CameraManager.IfBattle = true;
+        startScreen.SetActive(false);
+        battleUI.SetActive(true);
+        player1.SetActive(true);
+        player2.SetActive(true);
+        instruction.SetActive(false);
+
     }
 }
